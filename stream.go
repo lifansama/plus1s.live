@@ -28,10 +28,10 @@ func plus1s(w http.ResponseWriter, r *http.Request) {
 			i=1
 		}
 		b, err := ioutil.ReadFile("pic/"+leftPad2Len(strconv.Itoa(i)  , "0", 3) +".txt")
-		    if err != nil {
-		        fmt.Print(err)
-		    }
-		 str := string(b)
+		if err != nil {
+			fmt.Print(err)
+		}
+		str := string(b)
 		write(w,str)
 		i=i+1
 	}
@@ -41,8 +41,8 @@ func plus1s(w http.ResponseWriter, r *http.Request) {
 func write(w http.ResponseWriter,s string){
 	flusher, ok := w.(http.Flusher)
 	if !ok {
-        panic("Expected http.ResponseWriter to be an http.CloseNotifier")
-    }
+        	panic("Expected http.ResponseWriter to be an http.CloseNotifier")
+	}
 	fmt.Fprintf(w, s)
 	fmt.Fprintf(w, "\033[2J\033[H")
 	time.Sleep(100000000)
